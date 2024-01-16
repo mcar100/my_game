@@ -13,7 +13,7 @@ export interface Commands {
   command4: number;
 }
 
-interface ArrowGameSlice {
+interface ArrowGameState {
   gameTitle: string;
   command1: number;
   command2: number;
@@ -25,25 +25,23 @@ interface ArrowGameSlice {
   savedBlocks: Array<Blocks>;
 }
 
-const initialState: ArrowGameSlice = {
-  gameTitle: "화살표 게임",
-  command1: 37,
-  command2: 38,
-  command3: 39,
-  command4: 32,
-  point: 10,
-  fever: 0,
-  blocks: {
-    red: 0,
-    blue: 0,
-    green: 0,
-  },
-  savedBlocks: [],
-};
-
 const arrowGameSlice = createSlice({
   name: "arrowGameSlice",
-  initialState,
+  initialState: {
+    gameTitle: "화살표 게임",
+    command1: 37,
+    command2: 38,
+    command3: 39,
+    command4: 32,
+    point: 10,
+    fever: 0,
+    blocks: {
+      red: 0,
+      blue: 0,
+      green: 0,
+    },
+    savedBlocks: [],
+  } as ArrowGameState,
   reducers: {
     initArrowGame: (state) => {
       state.fever = 0;

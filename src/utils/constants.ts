@@ -1,4 +1,6 @@
-interface GameState {
+// export common interface and constants
+
+export interface GameState {
   OVER: number;
   PROCEEDING: number;
   STOPPED: number;

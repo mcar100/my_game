@@ -15,21 +15,19 @@ interface SavedData {
   timer: number;
 }
 
-const initialState: CommonState = {
-  gameState: GAME_STATE.OVER,
-  point: 0,
-  maxTime: 60,
-  timer: 0,
-  lastDate: new Date(),
-  savedData: {
-    point: 0,
-    timer: 0,
-  },
-};
-
 const commonSlice = createSlice({
   name: "commonSlice",
-  initialState,
+  initialState: {
+    gameState: GAME_STATE.OVER,
+    point: 0,
+    maxTime: 60,
+    timer: 0,
+    lastDate: new Date(),
+    savedData: {
+      point: 0,
+      timer: 0,
+    },
+  } as CommonState,
   reducers: {
     startGame: (state) => {
       state.gameState = GAME_STATE.PROCEEDING;
