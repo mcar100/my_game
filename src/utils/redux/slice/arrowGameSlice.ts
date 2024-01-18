@@ -1,24 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface Blocks {
-  red: number;
-  blue: number;
-  green: number;
+  red: string | null;
+  blue: string | null;
+  green: string | null;
 }
 
 export interface Commands {
-  command1: number;
-  command2: number;
-  command3: number;
-  command4: number;
+  command1: string;
+  command2: string;
+  command3: string;
+  command4: string;
 }
 
 interface ArrowGameState {
   gameTitle: string;
-  command1: number;
-  command2: number;
-  command3: number;
-  command4: number;
+  commandList: Commands;
   point: number;
   fever: number;
   blocks: Blocks;
@@ -29,37 +26,36 @@ const arrowGameSlice = createSlice({
   name: "arrowGameSlice",
   initialState: {
     gameTitle: "화살표 게임",
-    command1: 37,
-    command2: 38,
-    command3: 39,
-    command4: 32,
+    commandList: {
+      command1: "ArrowLeft",
+      command2: "ArrowUp",
+      command3: "ArrowDown",
+      command4: " " || "Space",
+    },
     point: 10,
     fever: 0,
     blocks: {
-      red: 0,
-      blue: 0,
-      green: 0,
+      red: null,
+      blue: null,
+      green: null,
     },
     savedBlocks: [],
   } as ArrowGameState,
   reducers: {
     initArrowGame: (state) => {
       state.fever = 0;
-      state.blocks.red = state.command1;
-      state.blocks.blue = state.command2;
-      state.blocks.green = state.command3;
+      state.blocks.red = state.commandList.command1;
+      state.blocks.blue = state.commandList.command2;
+      state.blocks.green = state.commandList.command3;
     },
     initCommand: (state) => {
-      state.command1 = 37;
-      state.command2 = 38;
-      state.command3 = 39;
-      state.command4 = 32;
+      state.commandList.command1 = "ArrowLeft";
+      state.commandList.command2 = "ArrowUp";
+      state.commandList.command3 = "ArrowRight";
+      state.commandList.command4 = " " || "Space";
     },
     changeCommand: (state, action: PayloadAction<Commands>) => {
-      state.command1 = action.payload.command1;
-      state.command2 = action.payload.command2;
-      state.command3 = action.payload.command3;
-      state.command4 = action.payload.command4;
+      state.commandList = action.payload;
     },
     saveBlocks: (state, action: PayloadAction<Array<Blocks>>) => {
       state.savedBlocks = [...action.payload];
