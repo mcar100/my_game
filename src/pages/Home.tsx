@@ -1,12 +1,10 @@
-import ArrowKeyGame from "./GamePage/ArrowKeyGame";
+import GamePage from "./GamePage/GamePage";
 
 function Home() {
   return (
     <div className="container">
       <div className="home-container">
-        <div className="game-container">
-          <ArrowKeyGame />
-        </div>
+        <GamePage />
       </div>
     </div>
   );

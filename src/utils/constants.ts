@@ -13,3 +13,5 @@ export const GAME_STATE: GameState = {
   STOPPED: 2,
   BUGGED: -1,
 };
+
+export const MAX_BLOCK_LENGTH = 5;
