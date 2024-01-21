@@ -6,13 +6,15 @@ interface CommonState {
   point: number;
   maxTime: number;
   timer: number;
-  lastDate: Date;
+  lastDate: string;
   savedData: SavedData;
 }
 
 interface SavedData {
+  title: string;
   point: number;
   timer: number;
+  date: string;
 }
 
 const commonSlice = createSlice({
@@ -20,9 +22,9 @@ const commonSlice = createSlice({
   initialState: {
     gameState: GAME_STATE.OVER,
     point: 0,
-    maxTime: 60,
+    maxTime: 20,
     timer: 0,
-    lastDate: new Date(),
+    lastDate: new Date().toISOString(),
     savedData: {
       point: 0,
       timer: 0,
@@ -33,28 +35,49 @@ const commonSlice = createSlice({
       state.gameState = GAME_STATE.PROCEEDING;
       state.point = 0;
       state.timer = state.maxTime;
-      state.lastDate = new Date();
+      state.lastDate = new Date().toISOString();
     },
-    stopGame: (state, action: PayloadAction<SavedData>) => {
+    stopGame: (state, action: PayloadAction<string>) => {
       state.gameState = GAME_STATE.STOPPED;
-      state.savedData.point = action.payload.point;
-      state.savedData.timer = action.payload.timer;
+      state.savedData.title = action.payload;
+      state.savedData.point = state.point;
+      state.savedData.timer = state.timer;
     },
     resumeGame: (state) => {
       state.gameState = GAME_STATE.PROCEEDING;
       state.point = state.savedData.point;
       state.timer = state.savedData.timer;
     },
-    finishGame: (state, action: PayloadAction<number>) => {
+    finishGame: (state) => {
       state.gameState = GAME_STATE.OVER;
-      state.point = action.payload;
+    },
+    saveGame: (state, action: PayloadAction<string>) => {
+      state.savedData.title = action.payload;
+      state.savedData.point = state.point;
+      state.savedData.timer = state.timer;
+      state.savedData.date = state.lastDate;
+    },
+    incrementPoint: (state, action: PayloadAction<number>) => {
+      state.point = state.point + action.payload;
     },
     updateTimer: (state, action: PayloadAction<number>) => {
       state.maxTime = action.payload;
     },
+    decrementTimer: (state) => {
+      if (state.gameState === GAME_STATE.PROCEEDING) {
+        state.timer = state.timer - 1;
+      }
+    },
   },
 });
 
-export const { startGame, stopGame, finishGame, updateTimer } =
-  commonSlice.actions;
+export const {
+  startGame,
+  stopGame,
+  resumeGame,
+  finishGame,
+  incrementPoint,
+  updateTimer,
+  decrementTimer,
+} = commonSlice.actions;
 export default commonSlice;

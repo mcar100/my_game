@@ -16,7 +16,7 @@ export interface Commands {
 interface ArrowGameState {
   gameTitle: string;
   commandList: Commands;
-  point: number;
+  pointUnit: number;
   fever: number;
   blocks: Blocks;
   savedBlocks: Array<Blocks>;
@@ -29,10 +29,10 @@ const arrowGameSlice = createSlice({
     commandList: {
       command1: "ArrowLeft",
       command2: "ArrowUp",
-      command3: "ArrowDown",
+      command3: "ArrowRight",
       command4: " " || "Space",
     },
-    point: 10,
+    pointUnit: 10,
     fever: 0,
     blocks: {
       red: null,
@@ -60,9 +60,23 @@ const arrowGameSlice = createSlice({
     saveBlocks: (state, action: PayloadAction<Array<Blocks>>) => {
       state.savedBlocks = [...action.payload];
     },
+    addFever: (state, action: PayloadAction<number>) => {
+      if (action.payload === 10) {
+        state.fever = state.fever + 10;
+      }
+    },
+    initFever: (state) => {
+      state.fever = 0;
+    },
   },
 });
 
-export const { initArrowGame, initCommand, changeCommand, saveBlocks } =
-  arrowGameSlice.actions;
+export const {
+  initArrowGame,
+  initCommand,
+  changeCommand,
+  saveBlocks,
+  addFever,
+  initFever,
+} = arrowGameSlice.actions;
 export default arrowGameSlice;
