@@ -142,17 +142,167 @@ body {
 }
 
 .game-container {
+  width: 800px;
+  height: 700px;
+  background-color: #000;
+  border-color: #000;
+  display: grid;
+  grid-template-areas: "head head head" "body body body";
+  grid-template-rows: 10% 90%;
+  grid-template-columns: 50% 50%;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+.game-container > .game-head {
+  grid-area: head;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 0px;
-  width: 800px;
-  height: 700px;
+}
+.game-container > .game-head > .state-bar {
+  width: 512px;
+  height: 50%;
+  background-color: #fff;
+  border-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.game-container > .game-head > .state-bar > span {
+  font-size: 25px;
+  font-weight: bold;
+  color: #000;
+  margin: 5px;
+}
+.game-container > .game-body {
+  grid-area: body;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+
+.game-button {
+  width: 100px;
+  height: 50px;
+  background-color: #fff;
+  border-color: #fff;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #000;
+}
+.game-button:hover {
+  opacity: 0.8;
+}
+
+.arrow-game-container {
+  width: 80%;
+  height: 100%;
+  background-color: #fff;
+  border-color: #fff;
+  display: grid;
+  grid-template-areas: "top top top" "bottom bottom bottom";
+  grid-template-rows: 70% 30%;
+  grid-template-columns: 50% 50%;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+.arrow-game-container > .arrow-game-top {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  grid-area: top;
+  width: 100%;
+  height: 100%;
   background-color: #000;
   border-color: #000;
 }
-
+.arrow-game-container > .arrow-game-top > .button-box {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+.arrow-game-container > .arrow-game-top > .button-box > button {
+  width: 85px;
+  height: 40px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #000;
+}
+.arrow-game-container > .arrow-game-top > .button-box > .absolute-box {
+  width: 100%;
+  height: 10%;
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+.arrow-game-container > .arrow-game-top > .block-box {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+.arrow-game-container > .arrow-game-top > .block-box > .block {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-color: #fff;
+  border: 1px solid #000;
+  text-align: center;
+}
+.arrow-game-container > .arrow-game-bottom {
+  grid-area: bottom;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  border-color: #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+.arrow-game-container > .arrow-game-bottom > .command-box {
+  width: 80%;
+  height: 70%;
+  background-color: #000;
+  border-color: #fff;
+  border: 8px solid white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
 /* 전체 레이아웃 틀 */
 .body-container {
   display: grid;
