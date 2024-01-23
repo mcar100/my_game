@@ -303,6 +303,10 @@ body {
   align-items: center;
   gap: 0px;
 }
+.arrow-game-container > .arrow-game-bottom > .command-box > .active {
+  opacity: 0.8;
+}
+
 /* 전체 레이아웃 틀 */
 .body-container {
   display: grid;
