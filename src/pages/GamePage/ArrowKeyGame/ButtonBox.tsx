@@ -5,6 +5,7 @@ import {
   resumeGame,
   startGame,
   stopGame,
+  finishGame,
 } from "../../../utils/redux/slice/commonSlicer";
 import { RootState } from "../../../utils/redux/store";
 
@@ -29,6 +30,10 @@ function ButtonBox() {
     dispatch(resumeGame());
   };
 
+  const handleGameOver = () => {
+    dispatch(finishGame());
+  };
+
   return (
     <div className="button-box">
       {gameMode === GAME_STATE.OVER ? (
@@ -42,9 +47,15 @@ function ButtonBox() {
           Game Stop
         </button>
       ) : (
-        <button className="game-button" onClick={handleGameResume}>
-          Game Resume
-        </button>
+        <>
+          {" "}
+          <button className="game-button" onClick={handleGameResume}>
+            Game Resume
+          </button>
+          <button className="game-button" onClick={handleGameOver}>
+            Game Over
+          </button>
+        </>
       )}
     </div>
   );
