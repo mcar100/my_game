@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface Blocks {
+export interface BlockCommands {
   red: string | null;
   blue: string | null;
   green: string | null;
@@ -18,8 +18,8 @@ interface ArrowGameState {
   commandList: Commands;
   pointUnit: number;
   fever: number;
-  blocks: Blocks;
-  savedBlocks: Array<Blocks>;
+  blocks: BlockCommands;
+  savedBlocks: Array<BlockCommands>;
 }
 
 const arrowGameSlice = createSlice({
@@ -57,7 +57,7 @@ const arrowGameSlice = createSlice({
     changeCommand: (state, action: PayloadAction<Commands>) => {
       state.commandList = action.payload;
     },
-    saveBlocks: (state, action: PayloadAction<Array<Blocks>>) => {
+    saveBlocks: (state, action: PayloadAction<Array<BlockCommands>>) => {
       state.savedBlocks = [...action.payload];
     },
     addFever: (state, action: PayloadAction<number>) => {
