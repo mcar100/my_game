@@ -1,9 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { MAX_BLOCK_LENGTH } from "../../constants";
+import {
+  setBlocksCommand,
+  initBlockList,
+  addBlocks,
+} from "../../game/arrowGame";
 
 export interface BlockCommands {
-  red: string | null;
-  blue: string | null;
-  green: string | null;
+  red: string;
+  blue: string;
+  green: string;
 }
 
 export interface Commands {
@@ -16,10 +22,11 @@ export interface Commands {
 interface ArrowGameState {
   gameTitle: string;
   commandList: Commands;
-  pointUnit: number;
-  fever: number;
+  colors: Array<string>;
   blocks: BlockCommands;
-  savedBlocks: Array<BlockCommands>;
+  blockList: Array<string>;
+  fever: number;
+  pointUnit: number;
 }
 
 const arrowGameSlice = createSlice({
@@ -32,21 +39,21 @@ const arrowGameSlice = createSlice({
       command3: "ArrowRight",
       command4: " " || "Space",
     },
+    colors: ["red", "blue", "green"],
+    blocks: {
+      red: "",
+      blue: "",
+      green: "",
+    },
+    blockList: [],
     pointUnit: 10,
     fever: 0,
-    blocks: {
-      red: null,
-      blue: null,
-      green: null,
-    },
-    savedBlocks: [],
   } as ArrowGameState,
   reducers: {
     initArrowGame: (state) => {
       state.fever = 0;
-      state.blocks.red = state.commandList.command1;
-      state.blocks.blue = state.commandList.command2;
-      state.blocks.green = state.commandList.command3;
+      setBlocksCommand(state.blocks, state.commandList);
+      initBlockList(state.blockList, state.colors);
     },
     initCommand: (state) => {
       state.commandList.command1 = "ArrowLeft";
@@ -57,8 +64,12 @@ const arrowGameSlice = createSlice({
     changeCommand: (state, action: PayloadAction<Commands>) => {
       state.commandList = action.payload;
     },
-    saveBlocks: (state, action: PayloadAction<Array<BlockCommands>>) => {
-      state.savedBlocks = [...action.payload];
+    breakBlock: (state, action: PayloadAction<string>) => {
+      const blockcolor = state.blockList[0] as "red" | "blue" | "green";
+      if (state.blocks[blockcolor] === action.payload) {
+        state.blockList = state.blockList.splice(1);
+      }
+      addBlocks(state.blockList, state.colors);
     },
     addFever: (state, action: PayloadAction<number>) => {
       if (action.payload === 10) {
@@ -75,7 +86,7 @@ export const {
   initArrowGame,
   initCommand,
   changeCommand,
-  saveBlocks,
+  breakBlock,
   addFever,
   initFever,
 } = arrowGameSlice.actions;

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { GAME_STATE } from "../../../utils/constants";
 import { RootState } from "../../../utils/redux/store";
+import { breakBlock } from "../../../utils/redux/slice/arrowGameSlice";
 
 interface PressedState {
   command1: boolean;
@@ -20,6 +21,8 @@ function ArrowKeyCommand() {
   const commandList = useSelector(
     (state: RootState) => state.arrowGame.commandList
   );
+  const dispatch = useDispatch();
+
   const handleCommandBtnPressed = (e: KeyboardEvent) => {
     if (e.key === commandList.command1) {
       setIsPressed(() => ({ ...initState, command1: true }));
@@ -43,7 +46,7 @@ function ArrowKeyCommand() {
     function handleKeyDown(e: KeyboardEvent): void {
       if (Object.values(commandList).includes(e.key)) {
         e.preventDefault();
-        console.log(e.key);
+        dispatch(breakBlock(e.key));
       } else if (e.key === "ArrowDown") {
         e.preventDefault();
       }

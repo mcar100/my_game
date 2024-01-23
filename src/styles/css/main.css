@@ -268,15 +268,28 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 0px;
+  gap: 20px;
 }
 .arrow-game-container > .arrow-game-top > .block-box > .block {
   width: 50px;
   height: 50px;
-  background-color: #fff;
-  border-color: #fff;
-  border: 1px solid #000;
-  text-align: center;
+}
+.arrow-game-container > .arrow-game-top > .block-box > .block.bc-red {
+  background-color: red;
+  border-color: #000;
+}
+.arrow-game-container > .arrow-game-top > .block-box > .block.bc-blue {
+  background-color: blue;
+  border-color: #000;
+}
+.arrow-game-container > .arrow-game-top > .block-box > .block.bc-green {
+  background-color: green;
+  border-color: #000;
+}
+.arrow-game-container > .arrow-game-top > .block-box > .block:nth-child(1) {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #fff;
 }
 .arrow-game-container > .arrow-game-bottom {
   grid-area: bottom;
@@ -301,7 +314,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 0px;
+  gap: 10px;
 }
 .arrow-game-container > .arrow-game-bottom > .command-box > .active {
   opacity: 0.8;
