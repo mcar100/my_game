@@ -311,6 +311,10 @@ body {
   background-color: #19ff00;
   border-color: #000;
 }
+.arrow-game-container > .arrow-game-top > .block-box > .block.bc-none {
+  background-color: #000;
+  border-color: #000;
+}
 .arrow-game-container > .arrow-game-top > .block-box > .block:nth-child(1) {
   transform: rotateY(-45deg);
 }

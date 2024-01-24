@@ -1,11 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
 import { GAME_STATE } from "../../../utils/constants";
-import { initArrowGame } from "../../../utils/redux/slice/arrowGameSlice";
+import {
+  initArrowGame,
+  setArrowGame,
+} from "../../../utils/redux/slice/arrowGameSlice";
 import {
   resumeGame,
   startGame,
   stopGame,
   finishGame,
+  SavedData,
 } from "../../../utils/redux/slice/commonSlicer";
 import { RootState } from "../../../utils/redux/store";
 
@@ -13,6 +17,7 @@ function ButtonBox() {
   const gameTitle = useSelector(
     (state: RootState) => state.arrowGame.gameTitle
   );
+  const point = useSelector((state: RootState) => state.arrowGame.point);
   const gameMode = useSelector((state: RootState) => state.common.gameState);
 
   const dispatch = useDispatch();
@@ -20,10 +25,17 @@ function ButtonBox() {
   const handleGameStart = () => {
     dispatch(startGame());
     dispatch(initArrowGame());
+    dispatch(setArrowGame());
   };
 
   const handleGameStop = () => {
-    dispatch(stopGame(gameTitle));
+    const savedData: SavedData = {
+      title: gameTitle,
+      point: point,
+      timer: 0,
+      date: "",
+    };
+    dispatch(stopGame(savedData));
   };
 
   const handleGameResume = () => {

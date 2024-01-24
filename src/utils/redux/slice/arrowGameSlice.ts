@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { MAX_BLOCK_LENGTH } from "../../constants";
 import {
   setBlocksCommand,
   initBlockList,
   addBlocks,
+  breakNormalBlocks,
+  breakFeverBlocks,
 } from "../../game/arrowGame";
 
 export interface BlockCommands {
@@ -19,12 +20,14 @@ export interface Commands {
   command4: string;
 }
 
-interface ArrowGameState {
+export interface ArrowGameState {
   gameTitle: string;
   commandList: Commands;
   colors: Array<string>;
   blocks: BlockCommands;
   blockList: Array<string>;
+  point: number;
+  combo: number;
   fever: number;
   pointUnit: number;
 }
@@ -46,12 +49,24 @@ const arrowGameSlice = createSlice({
       green: "",
     },
     blockList: [],
+    point: 0,
+    combo: 0,
     pointUnit: 10,
     fever: 0,
   } as ArrowGameState,
   reducers: {
     initArrowGame: (state) => {
+      state.point = 0;
+      state.combo = 0;
       state.fever = 0;
+      state.blockList = [];
+      state.blocks = {
+        red: "",
+        blue: "",
+        green: "",
+      };
+    },
+    setArrowGame: (state) => {
       setBlocksCommand(state.blocks, state.commandList);
       initBlockList(state.blockList, state.colors);
     },
@@ -61,20 +76,20 @@ const arrowGameSlice = createSlice({
       state.commandList.command3 = "ArrowRight";
       state.commandList.command4 = " " || "Space";
     },
-    changeCommand: (state, action: PayloadAction<Commands>) => {
+    setCommand: (state, action: PayloadAction<Commands>) => {
       state.commandList = action.payload;
     },
     breakBlock: (state, action: PayloadAction<string>) => {
-      const blockcolor = state.blockList[0] as "red" | "blue" | "green";
-      if (state.blocks[blockcolor] === action.payload) {
-        state.blockList = state.blockList.splice(1);
+      const blockColor = state.blockList[2] as "red" | "blue" | "green";
+      if (state.fever !== 100) {
+        breakNormalBlocks(state, action.payload, blockColor);
+      } else {
+        breakFeverBlocks(state, action.payload);
       }
       addBlocks(state.blockList, state.colors);
     },
-    addFever: (state, action: PayloadAction<number>) => {
-      if (action.payload === 10) {
-        state.fever = state.fever + 10;
-      }
+    addFever: (state) => {
+      state.fever = state.fever + 10;
     },
     initFever: (state) => {
       state.fever = 0;
@@ -84,8 +99,9 @@ const arrowGameSlice = createSlice({
 
 export const {
   initArrowGame,
+  setArrowGame,
   initCommand,
-  changeCommand,
+  setCommand,
   breakBlock,
   addFever,
   initFever,

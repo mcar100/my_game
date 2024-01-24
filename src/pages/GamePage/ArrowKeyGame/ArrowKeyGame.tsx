@@ -4,6 +4,7 @@ import BlockList from "./BlockList";
 import ButtonBox from "./ButtonBox";
 import { RootState } from "../../../utils/redux/store";
 import { GAME_STATE } from "../../../utils/constants";
+import FeverBox from "./FeverBox";
 
 function ArrowKeyGame() {
   const gameMode = useSelector((state: RootState) => state.common.gameState);
@@ -13,7 +14,7 @@ function ArrowKeyGame() {
       <div className="arrow-game-top">
         <ButtonBox />
         {gameMode !== GAME_STATE.OVER ? <BlockList /> : ""}
-        <div className="block-box"></div>
+        <FeverBox />
       </div>
       <div className="arrow-game-bottom">
         <ArrowKeyCommand />
