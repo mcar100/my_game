@@ -1,11 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   decrementTimer,
   finishGame,
 } from "../../../utils/redux/slice/commonSlicer";
 import { RootState } from "../../../utils/redux/store";
-import { GAME_STATE } from "../../../utils/constants";
 
 function Timer() {
   const timer = useSelector((state: RootState) => state.common.timer);
@@ -26,7 +25,7 @@ function Timer() {
   return (
     <div className="timer-box">
       Time:
-      <span>{timer}</span>
+      <span className={timer < 5 && timer > 0 ? "warning" : ""}>{timer}</span>
     </div>
   );
 }
