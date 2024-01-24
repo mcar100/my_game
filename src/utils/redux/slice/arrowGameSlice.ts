@@ -32,7 +32,7 @@ interface ArrowGameState {
 const arrowGameSlice = createSlice({
   name: "arrowGameSlice",
   initialState: {
-    gameTitle: "화살표 게임",
+    gameTitle: "Arrow Game",
     commandList: {
       command1: "ArrowLeft",
       command2: "ArrowUp",

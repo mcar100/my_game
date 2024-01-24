@@ -63,18 +63,18 @@ function ArrowKeyCommand() {
   return (
     <div className="command-box">
       <div className={isPressed.command1 ? "active" : ""}>
-        <button className="game-button" value={commandList.command1}>
-          ◁
+        <button className="game-button btn-red" value={commandList.command1}>
+          ◀
         </button>
       </div>
       <div className={isPressed.command2 ? "active" : ""}>
-        <button className="game-button" value={commandList.command2}>
-          △
+        <button className="game-button btn-blue" value={commandList.command2}>
+          ▲
         </button>
       </div>
       <div className={isPressed.command3 ? "active" : ""}>
-        <button className="game-button" value={commandList.command3}>
-          ▷
+        <button className="game-button btn-green" value={commandList.command3}>
+          ▶
         </button>
       </div>
     </div>

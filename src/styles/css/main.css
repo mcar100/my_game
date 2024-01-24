@@ -134,6 +134,7 @@ body {
 /* theme  */
 /* font-theme */
 /* situation  */
+/* arrow-game-theme */
 /* buttons */
 .nav-container > .nav-item > a {
   font-size: 16px;
@@ -275,15 +276,15 @@ body {
   height: 50px;
 }
 .arrow-game-container > .arrow-game-top > .block-box > .block.bc-red {
-  background-color: red;
+  background-color: #fa0f0c;
   border-color: #000;
 }
 .arrow-game-container > .arrow-game-top > .block-box > .block.bc-blue {
-  background-color: blue;
+  background-color: #0000fe;
   border-color: #000;
 }
 .arrow-game-container > .arrow-game-top > .block-box > .block.bc-green {
-  background-color: green;
+  background-color: #19ff00;
   border-color: #000;
 }
 .arrow-game-container > .arrow-game-top > .block-box > .block:nth-child(1) {
@@ -308,7 +309,7 @@ body {
   height: 70%;
   background-color: #000;
   border-color: #fff;
-  border: 8px solid white;
+  border: 6px solid white;
   border-radius: 12px;
   display: flex;
   flex-direction: row;
@@ -318,6 +319,24 @@ body {
 }
 .arrow-game-container > .arrow-game-bottom > .command-box > .active {
   opacity: 0.8;
+}
+.arrow-game-container > .arrow-game-bottom > .command-box > div > .game-button {
+  border: 1px solid white;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+.arrow-game-container > .arrow-game-bottom > .command-box > div > .btn-red {
+  background-color: #fa0f0c;
+  border-color: #fff;
+}
+.arrow-game-container > .arrow-game-bottom > .command-box > div > .btn-blue {
+  background-color: #0000fe;
+  border-color: #fff;
+}
+.arrow-game-container > .arrow-game-bottom > .command-box > div > .btn-green {
+  background-color: #19ff00;
+  border-color: #fff;
 }
 
 /* 전체 레이아웃 틀 */
