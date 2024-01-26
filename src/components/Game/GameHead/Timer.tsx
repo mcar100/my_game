@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { GAME_STATE } from "../../../utils/constants";
 import {
   decrementTimer,
   finishGame,
@@ -12,15 +13,26 @@ function Timer() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      dispatch(decrementTimer());
-    }, 1000);
+    let timerId: NodeJS.Timeout | undefined;
+
+    const startTimer = () => {
+      timerId = setInterval(() => {
+        dispatch(decrementTimer());
+      }, 1000);
+    };
+    if (gameMode === GAME_STATE.PROCEEDING) {
+      startTimer();
+    }
 
     if (timer === 0) {
-      clearTimeout(timeoutId);
+      clearInterval(timerId);
       dispatch(finishGame());
     }
-  }, [gameMode, timer, dispatch]);
+
+    return () => {
+      clearInterval(timerId);
+    };
+  }, [gameMode]);
 
   return (
     <div className="timer-box">
