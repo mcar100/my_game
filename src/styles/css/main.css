@@ -136,7 +136,7 @@ body {
 /* situation  */
 /* arrow-game-theme */
 /* buttons */
-@keyframes blink {
+@keyframes timeWarn {
   0% {
     color: #000;
   }
@@ -145,6 +145,17 @@ body {
   }
   100% {
     color: #000;
+  }
+}
+@keyframes feverOn {
+  0% {
+    background-color: #fff;
+  }
+  50% {
+    background-color: #758ec6;
+  }
+  100% {
+    background-color: #fff;
   }
 }
 .nav-container > .nav-item > a {
@@ -195,13 +206,17 @@ body {
   margin: 5px;
 }
 .game-container > .game-head > .state-bar > div > span {
+  display: inline-block;
+  text-align: left;
+  width: 30px;
+  height: 50%;
   margin-top: 0px;
   margin-bottom: 0px;
   margin-left: 5px;
   margin-right: 0px;
 }
 .game-container > .game-head > .state-bar > .timer-box > .warning {
-  animation: blink 1s infinite;
+  animation: timeWarn 1s infinite;
 }
 .game-container > .game-body {
   grid-area: body;
@@ -286,7 +301,7 @@ body {
 }
 .arrow-game-container > .arrow-game-top > .block-box {
   width: 100%;
-  height: 90%;
+  height: 80%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -338,6 +353,84 @@ body {
 }
 .arrow-game-container > .arrow-game-top > .block-box > .block:nth-child(5) {
   transform: rotateY(45deg);
+}
+.arrow-game-container > .arrow-game-top > .fever-box {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar {
+  width: 80%;
+  height: 100%;
+  background-color: #000;
+  border-color: #fff;
+  border: 6px solid white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 0px;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > div {
+  background-color: #fff;
+  border-color: #fff;
+  border-radius: 6px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  margin-right: 0px;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .fever-on {
+  animation: feverOn 1s infinite;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .g-0 {
+  width: 0%;
+  height: 80%;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .g-1 {
+  width: 10%;
+  height: 80%;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .g-2 {
+  width: 20%;
+  height: 80%;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .g-3 {
+  width: 30%;
+  height: 80%;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .g-4 {
+  width: 40%;
+  height: 80%;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .g-5 {
+  width: 50%;
+  height: 80%;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .g-6 {
+  width: 60%;
+  height: 80%;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .g-7 {
+  width: 70%;
+  height: 80%;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .g-8 {
+  width: 80%;
+  height: 80%;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .g-9 {
+  width: 90%;
+  height: 80%;
+}
+.arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .g-10 {
+  width: 98%;
+  height: 80%;
 }
 .arrow-game-container > .arrow-game-bottom {
   grid-area: bottom;

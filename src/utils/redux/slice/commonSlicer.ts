@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { GAME_STATE } from "../../constants";
+import { GAME_STATE, MAX_TIMER } from "../../constants";
 
 interface CommonState {
   gameState: number;
@@ -20,7 +20,7 @@ const commonSlice = createSlice({
   name: "commonSlice",
   initialState: {
     gameState: GAME_STATE.OVER,
-    maxTime: 20,
+    maxTime: MAX_TIMER,
     timer: 0,
     lastDate: new Date().toISOString(),
     savedData: {
@@ -59,6 +59,9 @@ const commonSlice = createSlice({
     decrementTimer: (state) => {
       if (state.gameState === GAME_STATE.PROCEEDING) {
         state.timer = state.timer - 1;
+      }
+      if (state.timer === 0) {
+        state.gameState = GAME_STATE.OVER;
       }
     },
   },

@@ -38,6 +38,9 @@ export const breakNormalBlocks = (
   command: string,
   blockColor: "red" | "blue" | "green"
 ) => {
+  if (command === state.commandList.command4) {
+    return;
+  }
   if (state.blocks[blockColor] === command) {
     state.blockList = state.blockList.splice(1);
     state.point += state.pointUnit;

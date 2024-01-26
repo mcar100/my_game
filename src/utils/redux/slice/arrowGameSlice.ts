@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { FEVER_UNIT, MAX_FEVER } from "../../constants";
 import {
   setBlocksCommand,
   initBlockList,
@@ -81,7 +82,7 @@ const arrowGameSlice = createSlice({
     },
     breakBlock: (state, action: PayloadAction<string>) => {
       const blockColor = state.blockList[2] as "red" | "blue" | "green";
-      if (state.fever !== 100) {
+      if (state.fever !== MAX_FEVER) {
         breakNormalBlocks(state, action.payload, blockColor);
       } else {
         breakFeverBlocks(state, action.payload);
@@ -89,7 +90,7 @@ const arrowGameSlice = createSlice({
       addBlocks(state.blockList, state.colors);
     },
     addFever: (state) => {
-      state.fever = state.fever + 10;
+      state.fever += FEVER_UNIT;
     },
     initFever: (state) => {
       state.fever = 0;

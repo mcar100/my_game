@@ -14,7 +14,7 @@ function ArrowKeyGame() {
       <div className="arrow-game-top">
         <ButtonBox />
         {gameMode !== GAME_STATE.OVER ? <BlockList /> : ""}
-        <FeverBox />
+        {gameMode !== GAME_STATE.OVER ? <FeverBox /> : ""}
       </div>
       <div className="arrow-game-bottom">
         <ArrowKeyCommand />
