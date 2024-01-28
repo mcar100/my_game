@@ -44,10 +44,10 @@ function ArrowKeyCommand() {
     }
 
     function handleKeyDown(e: KeyboardEvent): void {
-      if (Object.values(commandList).includes(e.key)) {
+      if (Object.values(commandList).includes(e.code)) {
         e.preventDefault();
-        dispatch(breakBlock(e.key));
-      } else if (e.key === "ArrowDown") {
+        dispatch(breakBlock(e.code));
+      } else if (e.code === "ArrowDown") {
         e.preventDefault();
       }
     }

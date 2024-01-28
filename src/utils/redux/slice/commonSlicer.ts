@@ -5,6 +5,7 @@ interface CommonState {
   gameState: number;
   maxTime: number;
   timer: number;
+  timerList: Array<number>;
   lastDate: string;
   savedData: SavedData;
 }
@@ -19,9 +20,10 @@ export interface SavedData {
 const commonSlice = createSlice({
   name: "commonSlice",
   initialState: {
-    gameState: GAME_STATE.OVER,
+    gameState: GAME_STATE.WAITING,
     maxTime: MAX_TIMER,
     timer: 0,
+    timerList: [30, 60, 90, 120, 150, 180],
     lastDate: new Date().toISOString(),
     savedData: {
       point: 0,
@@ -47,7 +49,14 @@ const commonSlice = createSlice({
     finishGame: (state) => {
       state.gameState = GAME_STATE.OVER;
     },
-    saveGame: (state, action: PayloadAction<SavedData>) => {
+    goHome: (state) => {
+      state.gameState = GAME_STATE.WAITING;
+      state.timer = 0;
+    },
+    setGame: (state) => {
+      state.gameState = GAME_STATE.SETTING;
+    },
+    saveGameData: (state, action: PayloadAction<SavedData>) => {
       state.savedData.title = action.payload.title;
       state.savedData.point = action.payload.point;
       state.savedData.timer = state.timer;
@@ -55,6 +64,9 @@ const commonSlice = createSlice({
     },
     updateTimer: (state, action: PayloadAction<number>) => {
       state.maxTime = action.payload;
+    },
+    initTimer: (state) => {
+      state.maxTime = MAX_TIMER;
     },
     decrementTimer: (state) => {
       if (state.gameState === GAME_STATE.PROCEEDING) {
@@ -72,7 +84,10 @@ export const {
   stopGame,
   resumeGame,
   finishGame,
+  goHome,
+  setGame,
   updateTimer,
+  initTimer,
   decrementTimer,
 } = commonSlice.actions;
 export default commonSlice;

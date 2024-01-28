@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GAME_STATE } from "../../../utils/constants";
 import {
@@ -24,7 +24,7 @@ function Timer() {
       startTimer();
     }
 
-    if (timer === 0) {
+    if (timerId !== undefined && timer === 0) {
       clearInterval(timerId);
       dispatch(finishGame());
     }

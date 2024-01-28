@@ -10,6 +10,7 @@ import {
   stopGame,
   finishGame,
   SavedData,
+  goHome,
 } from "../../../utils/redux/slice/commonSlicer";
 import { RootState } from "../../../utils/redux/store";
 
@@ -46,19 +47,30 @@ function ButtonBox() {
     dispatch(finishGame());
   };
 
+  const handleGameHome = () => {
+    dispatch(goHome());
+    dispatch(initArrowGame());
+    dispatch(setArrowGame());
+  };
+
   return (
     <div className="button-box">
-      {gameMode === GAME_STATE.OVER ? (
-        <div className="absolute-box">
-          <button className="game-button" onClick={handleGameStart}>
-            Game Start
-          </button>
-        </div>
-      ) : gameMode !== GAME_STATE.STOPPED ? (
+      {gameMode === GAME_STATE.WAITING ? (
+        <button className="game-button" onClick={handleGameStart}>
+          Game Start
+        </button>
+      ) : (
+        ""
+      )}
+      {gameMode === GAME_STATE.PROCEEDING ? (
         <button className="game-button" onClick={handleGameStop}>
           Game Stop
         </button>
       ) : (
+        ""
+      )}
+
+      {gameMode === GAME_STATE.STOPPED ? (
         <>
           {" "}
           <button className="game-button" onClick={handleGameResume}>
@@ -68,6 +80,15 @@ function ButtonBox() {
             Game Over
           </button>
         </>
+      ) : (
+        ""
+      )}
+      {gameMode === GAME_STATE.OVER ? (
+        <button className="game-button" onClick={handleGameHome}>
+          Home
+        </button>
+      ) : (
+        ""
       )}
     </div>
   );
