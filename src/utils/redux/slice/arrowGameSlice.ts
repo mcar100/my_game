@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FEVER_UNIT, MAX_FEVER } from "../../constants";
+import {
+  Commands,
+  INIT_COMMANDS,
+  MAX_FEVER,
+  FEVER_UNIT,
+} from "../../constants";
 import {
   setBlocksCommand,
   initBlockList,
@@ -12,13 +17,6 @@ export interface BlockCommands {
   red: string;
   blue: string;
   green: string;
-}
-
-export interface Commands {
-  command1: string;
-  command2: string;
-  command3: string;
-  command4: string;
 }
 
 export interface ArrowGameState {
@@ -37,12 +35,7 @@ const arrowGameSlice = createSlice({
   name: "arrowGameSlice",
   initialState: {
     gameTitle: "Arrow Game",
-    commandList: {
-      command1: "ArrowLeft",
-      command2: "ArrowUp",
-      command3: "ArrowRight",
-      command4: "Space" || "Spacebar",
-    },
+    commandList: INIT_COMMANDS,
     colors: ["red", "blue", "green"],
     blocks: {
       red: "",

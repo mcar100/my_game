@@ -1,9 +1,5 @@
-import { MAX_BLOCK_LENGTH } from "../constants";
-import {
-  ArrowGameState,
-  BlockCommands,
-  Commands,
-} from "../redux/slice/arrowGameSlice";
+import { Commands, MAX_BLOCK_LENGTH } from "../constants";
+import { ArrowGameState, BlockCommands } from "../redux/slice/arrowGameSlice";
 
 export const setBlocksCommand = (
   blocks: BlockCommands,
