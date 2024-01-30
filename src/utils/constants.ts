@@ -29,6 +29,16 @@ export const INIT_COMMANDS: Commands = {
   command4: "Space" || "Spacebar",
 };
 
+export const ACCEPT_COMMANDS = [
+  "ArrowLeft",
+  "ArrowUp",
+  "ArrowRight",
+  "ArrowDown",
+  "Space",
+];
+export const UNACCEPT_COMMANDS = ["Tab", "F5"];
+export const ACCEPT_COMMANDS_REGEX = /[a-z0-9]/i;
+
 export const MAX_TIMER = 90;
 export const MAX_BLOCK_LENGTH = 5;
 export const MAX_FEVER = 100;

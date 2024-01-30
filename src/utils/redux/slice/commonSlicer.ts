@@ -65,9 +65,7 @@ const commonSlice = createSlice({
     updateTimer: (state, action: PayloadAction<number>) => {
       state.maxTime = action.payload;
     },
-    initTimer: (state) => {
-      state.maxTime = MAX_TIMER;
-    },
+
     decrementTimer: (state) => {
       if (state.gameState === GAME_STATE.PROCEEDING) {
         state.timer = state.timer - 1;
@@ -87,7 +85,6 @@ export const {
   goHome,
   setGame,
   updateTimer,
-  initTimer,
   decrementTimer,
 } = commonSlice.actions;
 export default commonSlice;

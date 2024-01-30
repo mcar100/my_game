@@ -64,12 +64,6 @@ const arrowGameSlice = createSlice({
       setBlocksCommand(state.blocks, state.commandList);
       initBlockList(state.blockList, state.colors);
     },
-    initCommands: (state) => {
-      state.commandList.command1 = "ArrowLeft";
-      state.commandList.command2 = "ArrowUp";
-      state.commandList.command3 = "ArrowRight";
-      state.commandList.command4 = "Space" || "Spacebar";
-    },
     setCommands: (state, action: PayloadAction<Commands>) => {
       state.commandList = action.payload;
     },
@@ -94,7 +88,6 @@ const arrowGameSlice = createSlice({
 export const {
   initArrowGame,
   setArrowGame,
-  initCommands,
   setCommands,
   breakBlock,
   addFever,

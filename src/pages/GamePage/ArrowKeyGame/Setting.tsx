@@ -1,15 +1,16 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  initCommands,
-  setCommands,
-  Commands,
-} from "../../../utils/redux/slice/arrowGameSlice";
-import {
-  initTimer,
-  updateTimer,
-} from "../../../utils/redux/slice/commonSlicer";
+import { setCommands } from "../../../utils/redux/slice/arrowGameSlice";
+import { updateTimer } from "../../../utils/redux/slice/commonSlicer";
 import { RootState } from "../../../utils/redux/store";
+import {
+  ACCEPT_COMMANDS,
+  ACCEPT_COMMANDS_REGEX,
+  Commands,
+  INIT_COMMANDS,
+  MAX_TIMER,
+  UNACCEPT_COMMANDS,
+} from "../../../utils/constants";
 
 function Setting() {
   const commandList = useSelector(
@@ -18,7 +19,7 @@ function Setting() {
   const maxTimer = useSelector((state: RootState) => state.common.maxTime);
   const timerList = useSelector((state: RootState) => state.common.timerList);
   const dispatch = useDispatch();
-  const focusTargetRefs = useRef<string>();
+  const [focusTarget, setFocusTarget] = useState<string | undefined>(undefined);
   const [timerSetting, setTimerSetting] = useState<number>(maxTimer);
   const [commandSetting, setCommandSetting] = useState<Commands>({
     command1: commandList.command1,
@@ -34,7 +35,7 @@ function Setting() {
   };
 
   const handleClickTarget = (e: React.MouseEvent<HTMLInputElement>) => {
-    focusTargetRefs.current = e.currentTarget.name;
+    setFocusTarget(e.currentTarget.name);
     setIsConfirm(false);
   };
 
@@ -45,57 +46,72 @@ function Setting() {
       newTarget !== null &&
       (newTarget as "command1" | "command2" | "command3" | "command4")
     ) {
-      focusTargetRefs.current = newTarget;
+      setFocusTarget(newTarget);
     }
+  };
+
+  const checkKeyInput = (e: KeyboardEvent): boolean => {
+    // 키 유효 검사
+    const isValid =
+      (e.key.length === 1 && e.key.match(ACCEPT_COMMANDS_REGEX)) ||
+      ACCEPT_COMMANDS.includes(e.code);
+    if (!isValid) {
+      e.preventDefault();
+      return false;
+    }
+    return true;
+  };
+
+  const checkKeyDuplicate = (): boolean => {
+    // 중복 검사
+    const commands = Object.values(commandSetting);
+    return new Set(commands).size === commands.length;
   };
 
   const handleCommandChange = (e: KeyboardEvent) => {
-    if (focusTargetRefs.current === undefined || e.code === "Tab") {
+    if (focusTarget === undefined || UNACCEPT_COMMANDS.includes(e.key)) {
       return;
     }
 
-    setCommandSetting((prev) => {
-      const newCommandSetting = { ...prev };
+    const check = checkKeyInput(e);
+    if (check) {
+      setCommandSetting((prev) => {
+        const newCommandSetting = { ...prev };
 
-      newCommandSetting[
-        focusTargetRefs.current as
-          | "command1"
-          | "command2"
-          | "command3"
-          | "command4"
-      ] = e.code;
+        newCommandSetting[
+          focusTarget as "command1" | "command2" | "command3" | "command4"
+        ] = e.code;
 
-      return newCommandSetting;
-    });
+        return newCommandSetting;
+      });
+    }
   };
 
   const handleConfirmSetting = () => {
-    dispatch(setCommands(commandSetting));
-    dispatch(updateTimer(timerSetting));
-    setIsConfirm(true);
+    const isDuplicate = checkKeyDuplicate();
+    if (isDuplicate) {
+      dispatch(setCommands(commandSetting));
+      dispatch(updateTimer(timerSetting));
+      setIsConfirm(true);
+    }
   };
 
   const handleResetSetting = () => {
-    dispatch(initCommands());
-    dispatch(initTimer());
-    setIsConfirm(true);
+    setCommandSetting(INIT_COMMANDS);
+    setTimerSetting(MAX_TIMER);
+    handleConfirmSetting();
   };
 
   useEffect(() => {
+    console.log(focusTarget);
     document.addEventListener("keydown", handleCommandChange);
-    if (focusTargetRefs.current !== undefined) {
-      document.addEventListener("focusin", handleTabEvent);
-    }
+    document.addEventListener("focusin", handleTabEvent);
 
     return () => {
       document.removeEventListener("keydown", handleCommandChange);
+      document.removeEventListener("focusin", handleTabEvent);
     };
-  }, [focusTargetRefs.current]);
-
-  useEffect(() => {
-    setCommandSetting(commandList);
-    setTimerSetting(maxTimer);
-  }, [maxTimer, commandList]);
+  }, [focusTarget]);
 
   return (
     <div className="setting-box">
@@ -116,7 +132,7 @@ function Setting() {
           <input
             type="text"
             name="command1"
-            className={focusTargetRefs.current === "command1" ? "selected" : ""}
+            className={focusTarget === "command1" ? "selected" : ""}
             value={commandSetting.command1}
             onClick={handleClickTarget}
             onChange={(e) => {
@@ -129,7 +145,7 @@ function Setting() {
           <input
             type="text"
             name="command2"
-            className={focusTargetRefs.current === "command2" ? "selected" : ""}
+            className={focusTarget === "command2" ? "selected" : ""}
             value={commandSetting.command2}
             onClick={handleClickTarget}
             onChange={(e) => {
@@ -142,7 +158,7 @@ function Setting() {
           <input
             type="text"
             name="command3"
-            className={focusTargetRefs.current === "command3" ? "selected" : ""}
+            className={focusTarget === "command3" ? "selected" : ""}
             value={commandSetting.command3}
             onClick={handleClickTarget}
             onChange={(e) => {
@@ -155,7 +171,7 @@ function Setting() {
           <input
             type="text"
             name="command4"
-            className={focusTargetRefs.current === "command4" ? "selected" : ""}
+            className={focusTarget === "command4" ? "selected" : ""}
             value={commandSetting.command4}
             onClick={handleClickTarget}
             onChange={(e) => {
