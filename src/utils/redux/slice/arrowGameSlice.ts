@@ -19,14 +19,22 @@ export interface BlockCommands {
   green: string;
 }
 
+export interface BlockCounts {
+  red: number;
+  blue: number;
+  green: number;
+}
+
 export interface ArrowGameState {
   gameTitle: string;
   commandList: Commands;
   colors: Array<string>;
   blocks: BlockCommands;
   blockList: Array<string>;
+  blockCounts: BlockCounts;
   point: number;
   combo: number;
+  maxCombo: number;
   fever: number;
   pointUnit: number;
 }
@@ -43,22 +51,34 @@ const arrowGameSlice = createSlice({
       green: "",
     },
     blockList: [],
+    blockCounts: {
+      red: 0,
+      blue: 0,
+      green: 0,
+    },
     point: 0,
     combo: 0,
+    maxCombo: 0,
     pointUnit: 10,
     fever: 0,
   } as ArrowGameState,
   reducers: {
     initArrowGame: (state) => {
-      state.point = 0;
-      state.combo = 0;
-      state.fever = 0;
-      state.blockList = [];
       state.blocks = {
         red: "",
         blue: "",
         green: "",
       };
+      state.blockList = [];
+      state.blockCounts = {
+        red: 0,
+        blue: 0,
+        green: 0,
+      };
+      state.point = 0;
+      state.combo = 0;
+      state.maxCombo = 0;
+      state.fever = 0;
     },
     setArrowGame: (state) => {
       setBlocksCommand(state.blocks, state.commandList);
@@ -68,9 +88,8 @@ const arrowGameSlice = createSlice({
       state.commandList = action.payload;
     },
     breakBlock: (state, action: PayloadAction<string>) => {
-      const blockColor = state.blockList[2] as "red" | "blue" | "green";
       if (state.fever !== MAX_FEVER) {
-        breakNormalBlocks(state, action.payload, blockColor);
+        breakNormalBlocks(state, action.payload);
       } else {
         breakFeverBlocks(state, action.payload);
       }

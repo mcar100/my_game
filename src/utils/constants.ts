@@ -14,6 +14,11 @@ export const GAME_STATE: GameState = {
   OVER: 4,
   SETTING: 5,
 };
+export const MAX_TIMER = 90;
+
+// arrowGame
+export type ColorType = "red" | "green" | "blue";
+export type CommandType = "command1" | "command2" | "command3" | "command4";
 
 export interface Commands {
   command1: string;
@@ -29,18 +34,16 @@ export const INIT_COMMANDS: Commands = {
   command4: "Space" || "Spacebar",
 };
 
-export const ACCEPT_COMMANDS = [
+export const ACCEPT_COMMANDS: Array<string> = [
   "ArrowLeft",
   "ArrowUp",
   "ArrowRight",
   "ArrowDown",
   "Space",
 ];
-export const UNACCEPT_COMMANDS = ["Tab", "F5"];
-export const ACCEPT_COMMANDS_REGEX = /[a-z0-9]/i;
-
-export const MAX_TIMER = 90;
-export const MAX_BLOCK_LENGTH = 5;
-export const MAX_FEVER = 100;
-export const FEVER_UNIT = 10;
-export const FEVER_TIME_UNIT = 500;
+export const UNACCEPT_COMMANDS: Array<string> = ["Tab", "F5", "F12"];
+export const ACCEPT_COMMANDS_REGEX: RegExp = /[a-z0-9]/i;
+export const MAX_BLOCK_LENGTH: number = 5;
+export const MAX_FEVER: number = 100;
+export const FEVER_UNIT: number = 10;
+export const FEVER_TIME_UNIT: number = 500;

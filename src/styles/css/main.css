@@ -310,20 +310,30 @@ body {
   justify-content: center;
   align-items: center;
   gap: 15px;
-}
-.arrow-game-container > .arrow-game-top > .setting-box > .setting-title {
-  font-size: 30px;
-  font-weight: bold;
-  color: #fff;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 .arrow-game-container > .arrow-game-top > .setting-box > .setting-list {
-  width: 33%;
-  height: 60%;
+  width: 60%;
+  height: 100%;
+  border: 6px solid #fff;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
-  gap: 15px;
+  align-items: center;
+  gap: 10px;
+}
+.arrow-game-container > .arrow-game-top > .setting-box > .setting-list > .setting-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 .arrow-game-container > .arrow-game-top > .setting-box > .setting-list.confirm div > input {
   border: 3px solid #758ec6;
@@ -332,26 +342,37 @@ body {
   border: 3px solid #758ec6;
 }
 .arrow-game-container > .arrow-game-top > .setting-box > .setting-list > .setting-unit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 60%;
+  height: 100%;
   font-size: 20px;
   font-weight: bold;
   color: #fff;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 5px;
+  padding-right: 0px;
 }
 .arrow-game-container > .arrow-game-top > .setting-box > .setting-list > .setting-unit > input {
   border: 3px solid #fff;
   width: 20%;
-  height: 90%;
+  height: 70%;
   max-width: 120px;
-  max-height: 90%;
+  max-height: 70%;
   min-width: 90px;
-  min-height: 90%;
+  min-height: 70%;
 }
 .arrow-game-container > .arrow-game-top > .setting-box > .setting-list > .setting-unit > .selected {
   border: 3px solid #758ec6;
 }
-.arrow-game-container > .arrow-game-top > .setting-box > .setting-buttons > .game-button {
+.arrow-game-container > .arrow-game-top > .setting-box > .setting-list > .setting-buttons > .game-button {
   width: 80px;
   height: 40px;
-  margin: 3px;
+  margin: 10px;
 }
 .arrow-game-container > .arrow-game-top > .setting-box.confirm input {
   border: 3px solid #758ec6;
@@ -488,6 +509,69 @@ body {
 .arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .g-10 {
   width: 98%;
   height: 80%;
+}
+.arrow-game-container > .arrow-game-top > .endboard-box {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list {
+  width: 60%;
+  height: 100%;
+  border: 6px solid #fff;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list > .endboard-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list > .endboard-unit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list > .endboard-unit > .block {
+  width: 40px;
+  height: 40px;
+}
+.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list > .endboard-unit > .block.bc-red {
+  background-color: #fa0f0c;
+  border-color: #000;
+}
+.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list > .endboard-unit > .block.bc-blue {
+  background-color: #0000fe;
+  border-color: #000;
+}
+.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list > .endboard-unit > .block.bc-green {
+  background-color: #19ff00;
+  border-color: #000;
+}
+.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list > .endboard-unit > .block.bc-none {
+  background-color: #000;
+  border-color: #000;
 }
 .arrow-game-container > .arrow-game-bottom {
   grid-area: bottom;

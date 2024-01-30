@@ -6,7 +6,7 @@ import { RootState } from "../../../utils/redux/store";
 import { GAME_STATE } from "../../../utils/constants";
 import FeverBox from "./FeverBox";
 import Setting from "./Setting";
-import EndBoard from "../../../components/Game/EndBoard";
+import EndBoard from "./EndBoard";
 
 function ArrowKeyGame() {
   const gameMode = useSelector((state: RootState) => state.common.gameState);

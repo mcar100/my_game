@@ -7,6 +7,7 @@ import {
   ACCEPT_COMMANDS,
   ACCEPT_COMMANDS_REGEX,
   Commands,
+  CommandType,
   INIT_COMMANDS,
   MAX_TIMER,
   UNACCEPT_COMMANDS,
@@ -42,10 +43,7 @@ function Setting() {
   const handleTabEvent = (e: FocusEvent) => {
     const tabTarget = e.target as HTMLElement;
     const newTarget = tabTarget.getAttribute("name");
-    if (
-      newTarget !== null &&
-      (newTarget as "command1" | "command2" | "command3" | "command4")
-    ) {
+    if (newTarget !== null && (newTarget as CommandType)) {
       setFocusTarget(newTarget);
     }
   };
@@ -78,9 +76,7 @@ function Setting() {
       setCommandSetting((prev) => {
         const newCommandSetting = { ...prev };
 
-        newCommandSetting[
-          focusTarget as "command1" | "command2" | "command3" | "command4"
-        ] = e.code;
+        newCommandSetting[focusTarget as CommandType] = e.code;
 
         return newCommandSetting;
       });
@@ -103,7 +99,6 @@ function Setting() {
   };
 
   useEffect(() => {
-    console.log(focusTarget);
     document.addEventListener("keydown", handleCommandChange);
     document.addEventListener("focusin", handleTabEvent);
 
@@ -115,8 +110,8 @@ function Setting() {
 
   return (
     <div className="setting-box">
-      <div className="setting-title">Game Settings</div>
       <div className={isConfirm ? "setting-list confirm" : "setting-list"}>
+        <div className="setting-title">Game Settings</div>
         <div className="setting-unit">
           Timer :{" "}
           <select value={timerSetting} onChange={handleMaxTimerChange}>
@@ -179,15 +174,14 @@ function Setting() {
             }}
           />
         </div>
-      </div>
-
-      <div className="setting-buttons">
-        <button className="game-button" onClick={handleConfirmSetting}>
-          Confirm
-        </button>
-        <button className="game-button" onClick={handleResetSetting}>
-          Reset
-        </button>
+        <div className="setting-buttons">
+          <button className="game-button" onClick={handleConfirmSetting}>
+            Confirm
+          </button>
+          <button className="game-button" onClick={handleResetSetting}>
+            Reset
+          </button>
+        </div>
       </div>
     </div>
   );
