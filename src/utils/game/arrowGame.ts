@@ -45,7 +45,7 @@ export const breakNormalBlocks = (state: ArrowGameState, command: string) => {
   if (state.blocks[blockColor] === command) {
     breakBlocks(state);
   } else {
-    state.maxCombo = state.combo;
+    updateMaxCombo(state);
     state.combo = 0;
   }
 };
@@ -53,5 +53,14 @@ export const breakNormalBlocks = (state: ArrowGameState, command: string) => {
 export const breakFeverBlocks = (state: ArrowGameState, command: string) => {
   if (state.commandList.command4 === command) {
     breakBlocks(state);
+  }
+};
+
+export const updateMaxCombo = (state: ArrowGameState) => {
+  const beforeMaxCombo = Number(state.maxCombo);
+  const newCombo = Number(state.combo);
+
+  if (beforeMaxCombo < newCombo) {
+    state.maxCombo = newCombo;
   }
 };

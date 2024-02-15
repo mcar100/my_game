@@ -11,6 +11,7 @@ import {
   addBlocks,
   breakNormalBlocks,
   breakFeverBlocks,
+  updateMaxCombo,
 } from "../../game/arrowGame";
 
 export interface BlockCommands {
@@ -101,6 +102,9 @@ const arrowGameSlice = createSlice({
     initFever: (state) => {
       state.fever = 0;
     },
+    checkLastCombo: (state) => {
+      updateMaxCombo(state);
+    },
   },
 });
 
@@ -111,5 +115,6 @@ export const {
   breakBlock,
   addFever,
   initFever,
+  checkLastCombo,
 } = arrowGameSlice.actions;
 export default arrowGameSlice;

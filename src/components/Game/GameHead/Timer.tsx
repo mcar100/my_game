@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GAME_STATE } from "../../../utils/constants";
+import { checkLastCombo } from "../../../utils/redux/slice/arrowGameSlice";
 import {
   decrementTimer,
   finishGame,
@@ -31,6 +32,7 @@ function Timer() {
 
     return () => {
       clearInterval(timerId);
+      dispatch(checkLastCombo());
     };
   }, [gameMode]);
 
