@@ -2,10 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GAME_STATE } from "../../../utils/constants";
 import { checkLastCombo } from "../../../utils/redux/slice/arrowGameSlice";
-import {
-  decrementTimer,
-  finishGame,
-} from "../../../utils/redux/slice/commonSlicer";
+import { decrementTimer } from "../../../utils/redux/slice/commonSlicer";
 import { RootState } from "../../../utils/redux/store";
 
 function Timer() {
@@ -21,18 +18,15 @@ function Timer() {
         dispatch(decrementTimer());
       }, 1000);
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     if (gameMode === GAME_STATE.PROCEEDING) {
       startTimer();
+    } else if (gameMode === GAME_STATE.OVER) {
+      dispatch(checkLastCombo());
     }
-
-    if (timerId !== undefined && timer === 0) {
-      clearInterval(timerId);
-      dispatch(finishGame());
-    }
-
     return () => {
       clearInterval(timerId);
-      dispatch(checkLastCombo());
     };
   }, [gameMode]);
 

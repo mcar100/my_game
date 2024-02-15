@@ -450,7 +450,7 @@ body {
   border-radius: 12px;
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   gap: 0px;
 }
