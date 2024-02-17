@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCommands } from "../../../utils/redux/slice/arrowGameSlice";
 import { updateTimer } from "../../../utils/redux/slice/commonSlicer";
@@ -40,13 +40,13 @@ function Setting() {
     setIsConfirm(false);
   };
 
-  const handleTabEvent = (e: FocusEvent) => {
+  const handleTabEvent = useCallback((e: FocusEvent) => {
     const tabTarget = e.target as HTMLElement;
     const newTarget = tabTarget.getAttribute("name");
     if (newTarget !== null && (newTarget as CommandType)) {
       setFocusTarget(newTarget);
     }
-  };
+  }, []);
 
   const checkKeyInput = (e: KeyboardEvent): boolean => {
     // 키 유효 검사
@@ -66,22 +66,25 @@ function Setting() {
     return new Set(commands).size === commands.length;
   };
 
-  const handleCommandChange = (e: KeyboardEvent) => {
-    if (focusTarget === undefined || UNACCEPT_COMMANDS.includes(e.key)) {
-      return;
-    }
+  const handleCommandChange = useCallback(
+    (e: KeyboardEvent) => {
+      if (focusTarget === undefined || UNACCEPT_COMMANDS.includes(e.key)) {
+        return;
+      }
 
-    const check = checkKeyInput(e);
-    if (check) {
-      setCommandSetting((prev) => {
-        const newCommandSetting = { ...prev };
+      const check = checkKeyInput(e);
+      if (check) {
+        setCommandSetting((prev) => {
+          const newCommandSetting = { ...prev };
 
-        newCommandSetting[focusTarget as CommandType] = e.code;
+          newCommandSetting[focusTarget as CommandType] = e.code;
 
-        return newCommandSetting;
-      });
-    }
-  };
+          return newCommandSetting;
+        });
+      }
+    },
+    [focusTarget]
+  );
 
   const handleConfirmSetting = () => {
     const isDuplicate = checkKeyDuplicate();
@@ -106,7 +109,7 @@ function Setting() {
       document.removeEventListener("keydown", handleCommandChange);
       document.removeEventListener("focusin", handleTabEvent);
     };
-  }, [focusTarget]);
+  }, [focusTarget, handleCommandChange, handleTabEvent]);
 
   return (
     <div className="setting-box">

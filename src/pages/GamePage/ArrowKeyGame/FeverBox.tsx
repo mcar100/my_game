@@ -39,7 +39,7 @@ function FeverBox() {
       setIsFever(false);
       dispatch(initFever());
     }
-  }, [feverGague]);
+  }, [feverGague, dispatch]);
 
   return (
     <div className="fever-box">

@@ -10,14 +10,16 @@ function Combo() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    /* eslint-disable */
     if (fever === MAX_FEVER) {
       return;
     }
+    /* eslint-enable */
 
     if (combo > 0 && combo % 5 === 0) {
       dispatch(addFever());
     }
-  }, [combo]);
+  }, [combo, dispatch]);
 
   return (
     <div className="combo-box">

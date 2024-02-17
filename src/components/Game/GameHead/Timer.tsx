@@ -19,7 +19,6 @@ function Timer() {
       }, 1000);
     };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     if (gameMode === GAME_STATE.PROCEEDING) {
       startTimer();
     } else if (gameMode === GAME_STATE.OVER) {
@@ -28,7 +27,7 @@ function Timer() {
     return () => {
       clearInterval(timerId);
     };
-  }, [gameMode]);
+  }, [gameMode, dispatch]);
 
   return (
     <div className="timer-box">
