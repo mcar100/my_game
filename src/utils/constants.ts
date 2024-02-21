@@ -51,5 +51,5 @@ export const BLOCK_BREAK_STATE: BlockBreakType = {
   FEVER: 2,
 };
 export const MAX_FEVER: number = 100;
-export const FEVER_UNIT: number = 50;
+export const FEVER_UNIT: number = 10;
 export const FEVER_TIME_UNIT: number = 500;
