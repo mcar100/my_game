@@ -30,12 +30,12 @@ function Setting() {
   });
   const [isConfirm, setIsConfirm] = useState<boolean>(false);
 
-  const handleMaxTimerChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleMaxTimerChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     setTimerSetting(Number(e.target.value));
     setIsConfirm(false);
   };
 
-  const handleClickTarget = (e: React.MouseEvent<HTMLInputElement>) => {
+  const handleClickTarget = (e: React.MouseEvent<HTMLInputElement>): void => {
     setFocusTarget(e.currentTarget.name);
     setIsConfirm(false);
   };
@@ -86,7 +86,7 @@ function Setting() {
     [focusTarget]
   );
 
-  const handleConfirmSetting = () => {
+  const handleConfirmSetting = (): void => {
     const isDuplicate = checkKeyDuplicate();
     if (isDuplicate) {
       dispatch(setCommands(commandSetting));
@@ -95,7 +95,7 @@ function Setting() {
     }
   };
 
-  const handleResetSetting = () => {
+  const handleResetSetting = (): void => {
     setCommandSetting(INIT_COMMANDS);
     setTimerSetting(MAX_TIMER);
     handleConfirmSetting();

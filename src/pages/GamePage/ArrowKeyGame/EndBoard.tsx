@@ -6,8 +6,8 @@ function EndBoard() {
   const blockCounts = useSelector(
     (state: RootState) => state.arrowGame.blockCounts
   );
-  const blockColor = Object.keys(blockCounts);
-  const totalCount = Object.values(blockCounts).reduce(
+  const blockColor: Array<string> = Object.keys(blockCounts);
+  const totalCount: number = Object.values(blockCounts).reduce(
     (prev, acc) => prev + acc,
     0
   );

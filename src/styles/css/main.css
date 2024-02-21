@@ -148,14 +148,58 @@ body {
   }
 }
 @keyframes feverOn {
+  /* 무지개 색상 배경 */
   0% {
-    background-color: #fff;
-  }
-  50% {
-    background-color: #758ec6;
+    background-position: 0 0;
   }
   100% {
-    background-color: #fff;
+    background-position: 200% 0;
+  }
+}
+@keyframes blockFail {
+  0% {
+    border-color: #fff;
+    opacity: 80%;
+  }
+  50% {
+    width: 120px;
+    height: 120px;
+    border-color: #d32f2f;
+    opacity: 30%;
+  }
+  100% {
+    width: 0px;
+    height: 0px;
+    border-color: #fff;
+    opacity: 0%;
+  }
+}
+@keyframes blockFever {
+  /* 무지개 색상 배경 */
+  0% {
+    -o-border-image: linear-gradient(to bottom right, #f0f, #0ff, rgb(202, 39, 252));
+       border-image: linear-gradient(to bottom right, #f0f, #0ff, rgb(202, 39, 252));
+    border-image-slice: 1;
+  }
+  25% {
+    -o-border-image: linear-gradient(to bottom right, #0ff, #f0f, rgb(202, 39, 252));
+       border-image: linear-gradient(to bottom right, #0ff, #f0f, rgb(202, 39, 252));
+    border-image-slice: 1;
+  }
+  50% {
+    -o-border-image: linear-gradient(to bottom right, rgb(202, 39, 252), #0ff, #f0f);
+       border-image: linear-gradient(to bottom right, rgb(202, 39, 252), #0ff, #f0f);
+    border-image-slice: 1;
+  }
+  75% {
+    -o-border-image: linear-gradient(to bottom right, rgb(202, 39, 252), #f0f, #0ff);
+       border-image: linear-gradient(to bottom right, rgb(202, 39, 252), #f0f, #0ff);
+    border-image-slice: 1;
+  }
+  100% {
+    -o-border-image: linear-gradient(to bottom right, #f0f, #0ff, rgb(202, 39, 252));
+       border-image: linear-gradient(to bottom right, #f0f, #0ff, rgb(202, 39, 252));
+    border-image-slice: 1;
   }
 }
 .nav-container > .nav-item > a {
@@ -378,6 +422,11 @@ body {
   border: 3px solid #758ec6;
 }
 .arrow-game-container > .arrow-game-top > .block-box {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   height: 80%;
   display: flex;
@@ -391,6 +440,7 @@ body {
 .arrow-game-container > .arrow-game-top > .block-box > .block {
   width: 70px;
   height: 70px;
+  z-index: 1001;
 }
 .arrow-game-container > .arrow-game-top > .block-box > .block.bc-red {
   background-color: #fa0f0c;
@@ -419,8 +469,8 @@ body {
   margin-right: 15px;
 }
 .arrow-game-container > .arrow-game-top > .block-box > .block:nth-child(3) {
-  transform: scale(1.2);
   border: 3px solid #fff;
+  transform: scale(1.2);
 }
 .arrow-game-container > .arrow-game-top > .block-box > .block:nth-child(4) {
   transform: rotateY(30deg) scale(1.1);
@@ -431,6 +481,37 @@ body {
 }
 .arrow-game-container > .arrow-game-top > .block-box > .block:nth-child(5) {
   transform: rotateY(45deg);
+}
+.arrow-game-container > .arrow-game-top > .block-box > .block-fail-effect {
+  z-index: 1000;
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+  left: 50%;
+  right: 0;
+  width: 85px;
+  height: 85px;
+  transform: translate(-50%, -50%);
+  animation: blockFail 0.3s;
+}
+.arrow-game-container > .arrow-game-top > .block-box > .block-fail-effect.bc-red {
+  background-color: #fa0f0c;
+  border-color: #000;
+}
+.arrow-game-container > .arrow-game-top > .block-box > .block-fail-effect.bc-green {
+  background-color: #19ff00;
+  border-color: #000;
+}
+.arrow-game-container > .arrow-game-top > .block-box > .block-fail-effect.bc-blue {
+  background-color: #0000fe;
+  border-color: #000;
+}
+.arrow-game-container > .arrow-game-top > .block-box.block-effect-0 > .block:nth-child(3) {
+  border: 3px solid #d32f2f;
+}
+.arrow-game-container > .arrow-game-top > .block-box.block-effect-2 > .block:nth-child(3) {
+  border: 3px solid #fff;
+  animation: blockFever 4s linear infinite;
 }
 .arrow-game-container > .arrow-game-top > .fever-box {
   width: 100%;
@@ -464,7 +545,9 @@ body {
   margin-right: 0px;
 }
 .arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .fever-on {
-  animation: feverOn 1s infinite;
+  background: linear-gradient(to right, #f0f, #0ff, rgb(202, 39, 252), #0ff, #f0f);
+  background-size: 500px 100%;
+  animation: feverOn 2s linear infinite;
 }
 .arrow-game-container > .arrow-game-top > .fever-box > .fever-bar > .g-0 {
   width: 0%;

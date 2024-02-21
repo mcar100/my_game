@@ -1,4 +1,9 @@
-import { ColorType, Commands, MAX_BLOCK_LENGTH } from "../constants";
+import {
+  BLOCK_BREAK_STATE,
+  ColorType,
+  Commands,
+  MAX_BLOCK_LENGTH,
+} from "../constants";
 import { ArrowGameState, BlockCommands } from "../redux/slice/arrowGameSlice";
 
 export const setBlocksCommand = (
@@ -45,6 +50,7 @@ export const breakNormalBlocks = (state: ArrowGameState, command: string) => {
   if (state.blocks[blockColor] === command) {
     breakBlocks(state);
   } else {
+    state.blockBreakState = BLOCK_BREAK_STATE.FAIL;
     updateMaxCombo(state);
     state.combo = 0;
   }

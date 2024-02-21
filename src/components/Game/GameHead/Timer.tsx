@@ -13,7 +13,7 @@ function Timer() {
   useEffect(() => {
     let timerId: NodeJS.Timeout | undefined;
 
-    const startTimer = () => {
+    const startTimer = (): void => {
       timerId = setInterval(() => {
         dispatch(decrementTimer());
       }, 1000);

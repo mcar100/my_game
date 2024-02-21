@@ -23,13 +23,13 @@ function ButtonBox() {
 
   const dispatch = useDispatch();
 
-  const handleGameStart = () => {
+  const handleGameStart = (): void => {
     dispatch(startGame());
     dispatch(initArrowGame());
     dispatch(setArrowGame());
   };
 
-  const handleGameStop = () => {
+  const handleGameStop = (): void => {
     const savedData: SavedData = {
       title: gameTitle,
       point: point,
@@ -39,15 +39,15 @@ function ButtonBox() {
     dispatch(stopGame(savedData));
   };
 
-  const handleGameResume = () => {
+  const handleGameResume = (): void => {
     dispatch(resumeGame());
   };
 
-  const handleGameOver = () => {
+  const handleGameOver = (): void => {
     dispatch(finishGame());
   };
 
-  const handleGameHome = () => {
+  const handleGameHome = (): void => {
     dispatch(goHome());
     dispatch(initArrowGame());
     dispatch(setArrowGame());

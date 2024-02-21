@@ -5,7 +5,11 @@ import {
   GAME_STATE,
   MAX_FEVER,
 } from "../../../utils/constants";
-import { initFever } from "../../../utils/redux/slice/arrowGameSlice";
+import {
+  initFever,
+  feverBlockBreak,
+  initBlockBreakState,
+} from "../../../utils/redux/slice/arrowGameSlice";
 import { RootState } from "../../../utils/redux/store";
 
 function FeverBox() {
@@ -19,6 +23,7 @@ function FeverBox() {
     let feverId: NodeJS.Timeout | undefined;
     if (fever === MAX_FEVER && gameMode === GAME_STATE.PROCEEDING) {
       setIsFever(true);
+      dispatch(feverBlockBreak());
       feverId = setInterval(() => {
         setFeverGague((prev) => prev - 1);
       }, FEVER_TIME_UNIT);
@@ -27,7 +32,7 @@ function FeverBox() {
       setIsFever(false);
       clearInterval(feverId);
     };
-  }, [fever, gameMode]);
+  }, [fever, dispatch, gameMode]);
 
   useEffect(() => {
     const feverGague = Math.floor(fever / 10);
@@ -38,6 +43,7 @@ function FeverBox() {
     if (feverGague === 0) {
       setIsFever(false);
       dispatch(initFever());
+      dispatch(initBlockBreakState());
     }
   }, [feverGague, dispatch]);
 

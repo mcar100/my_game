@@ -4,6 +4,7 @@ import {
   INIT_COMMANDS,
   MAX_FEVER,
   FEVER_UNIT,
+  BLOCK_BREAK_STATE,
 } from "../../constants";
 import {
   setBlocksCommand,
@@ -33,6 +34,7 @@ export interface ArrowGameState {
   blocks: BlockCommands;
   blockList: Array<string>;
   blockCounts: BlockCounts;
+  blockBreakState: number;
   point: number;
   combo: number;
   maxCombo: number;
@@ -57,6 +59,7 @@ const arrowGameSlice = createSlice({
       blue: 0,
       green: 0,
     },
+    blockBreakState: BLOCK_BREAK_STATE.NORMAL,
     point: 0,
     combo: 0,
     maxCombo: 0,
@@ -105,6 +108,12 @@ const arrowGameSlice = createSlice({
     checkLastCombo: (state) => {
       updateMaxCombo(state);
     },
+    feverBlockBreak: (state) => {
+      state.blockBreakState = BLOCK_BREAK_STATE.FEVER;
+    },
+    initBlockBreakState: (state) => {
+      state.blockBreakState = BLOCK_BREAK_STATE.NORMAL;
+    },
   },
 });
 
@@ -116,5 +125,7 @@ export const {
   addFever,
   initFever,
   checkLastCombo,
+  feverBlockBreak,
+  initBlockBreakState,
 } = arrowGameSlice.actions;
 export default arrowGameSlice;
