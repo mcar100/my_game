@@ -100,7 +100,9 @@ const arrowGameSlice = createSlice({
       addBlocks(state.blockList, state.colors);
     },
     addFever: (state) => {
-      state.fever += FEVER_UNIT;
+      if (state.fever !== MAX_FEVER) {
+        state.fever += FEVER_UNIT;
+      }
     },
     initFever: (state) => {
       state.fever = 0;
