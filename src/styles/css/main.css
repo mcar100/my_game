@@ -228,7 +228,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
   gap: 0px;
 }
 .game-container > .game-head > .state-bar {
@@ -663,7 +663,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   gap: 0px;
 }
 .arrow-game-container > .arrow-game-bottom > .command-box {
