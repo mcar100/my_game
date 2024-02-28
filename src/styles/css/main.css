@@ -228,12 +228,12 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   gap: 0px;
 }
 .game-container > .game-head > .state-bar {
   width: 512px;
-  height: 50%;
+  height: 45%;
   background-color: #fff;
   border-color: #fff;
   display: flex;
@@ -276,12 +276,13 @@ body {
 .game-button {
   width: 100px;
   height: 50px;
-  background-color: #fff;
+  background-color: #000;
   border-color: #fff;
+  border: 3px solid #fff;
   border-radius: 3px;
   font-size: 13px;
   font-weight: bold;
-  color: #000;
+  color: #fff;
 }
 .game-button:hover {
   opacity: 0.8;
@@ -314,7 +315,7 @@ body {
 }
 .arrow-game-container > .arrow-game-top > .button-box {
   width: 100%;
-  height: 10%;
+  height: 17%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -326,7 +327,8 @@ body {
   height: 40px;
   font-size: 10px;
   font-weight: bold;
-  color: #000;
+  color: #fff;
+  border: 3px solid #fff;
 }
 .arrow-game-container > .arrow-game-top > .button-box > .absolute-box {
   width: 100%;
@@ -346,15 +348,23 @@ body {
 .arrow-game-container > .arrow-game-top > .button-box > .absolute-box > button {
   margin: 5px;
 }
+.arrow-game-container > .arrow-game-top > .button-box > .big-button {
+  width: 120px;
+  height: 50px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  margin: 5px;
+}
 .arrow-game-container > .arrow-game-top > .setting-box {
   width: 100%;
-  height: 90%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 15px;
-  margin-top: 10px;
+  margin-top: 25px;
   margin-bottom: 0px;
   margin-left: 0px;
   margin-right: 0px;
@@ -374,8 +384,8 @@ body {
   font-size: 30px;
   font-weight: bold;
   color: #fff;
-  margin-top: 5px;
-  margin-bottom: 15px;
+  margin-top: 15px;
+  margin-bottom: 10px;
   margin-left: 0px;
   margin-right: 0px;
 }
@@ -409,6 +419,10 @@ body {
   max-height: 70%;
   min-width: 90px;
   min-height: 70%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  margin-right: 0px;
 }
 .arrow-game-container > .arrow-game-top > .setting-box > .setting-list > .setting-unit > .selected {
   border: 3px solid #758ec6;
@@ -416,7 +430,7 @@ body {
 .arrow-game-container > .arrow-game-top > .setting-box > .setting-list > .setting-buttons > .game-button {
   width: 80px;
   height: 40px;
-  margin: 10px;
+  margin: 15px;
 }
 .arrow-game-container > .arrow-game-top > .setting-box.confirm input {
   border: 3px solid #758ec6;
@@ -428,7 +442,7 @@ body {
   left: 0;
   right: 0;
   width: 100%;
-  height: 80%;
+  height: 60%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -515,7 +529,7 @@ body {
 }
 .arrow-game-container > .arrow-game-top > .fever-box {
   width: 100%;
-  height: 10%;
+  height: 20%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -524,7 +538,7 @@ body {
 }
 .arrow-game-container > .arrow-game-top > .fever-box > .fever-bar {
   width: 80%;
-  height: 100%;
+  height: 50%;
   background-color: #000;
   border-color: #fff;
   border: 6px solid white;
@@ -601,7 +615,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 15px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 0px;
   margin-left: 0px;
   margin-right: 0px;
@@ -631,30 +645,14 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   font-size: 20px;
   font-weight: bold;
   color: #fff;
 }
-.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list > .endboard-unit > .block {
+.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list > .endboard-unit > span {
   width: 40px;
-  height: 40px;
-}
-.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list > .endboard-unit > .block.bc-red {
-  background-color: #fa0f0c;
-  border-color: #000;
-}
-.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list > .endboard-unit > .block.bc-blue {
-  background-color: #0000fe;
-  border-color: #000;
-}
-.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list > .endboard-unit > .block.bc-green {
-  background-color: #19ff00;
-  border-color: #000;
-}
-.arrow-game-container > .arrow-game-top > .endboard-box > .endboard-list > .endboard-unit > .block.bc-none {
-  background-color: #000;
-  border-color: #000;
+  height: 25px;
 }
 .arrow-game-container > .arrow-game-bottom {
   grid-area: bottom;
@@ -665,7 +663,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   gap: 0px;
 }
 .arrow-game-container > .arrow-game-bottom > .command-box {
@@ -702,6 +700,39 @@ body {
 .arrow-game-container > .arrow-game-bottom > .command-box > div > .btn-green {
   background-color: #19ff00;
   border-color: #fff;
+}
+
+.block {
+  width: 40px;
+  height: 40px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 3px;
+}
+.block.bc-red {
+  background-color: #fa0f0c;
+  border-color: #000;
+}
+.block.bc-blue {
+  background-color: #0000fe;
+  border-color: #000;
+}
+.block.bc-green {
+  background-color: #19ff00;
+  border-color: #000;
+}
+.block.bc-fever {
+  background-color: #000;
+  border-color: #000;
+  border: 3px solid transparent;
+  -o-border-image: linear-gradient(to bottom right, #f0f, #0ff, rgb(202, 39, 252));
+     border-image: linear-gradient(to bottom right, #f0f, #0ff, rgb(202, 39, 252));
+  border-image-slice: 1;
+}
+.block.bc-none {
+  background-color: #000;
+  border-color: #000;
 }
 
 /* 전체 레이아웃 틀 */
