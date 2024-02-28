@@ -20,7 +20,7 @@ function EndBoard() {
         {blockColor.map((color, idx) => (
           <div className="endboard-unit" key={`color-${idx}`}>
             <div className={`block bc-${color}`} key={`block-${idx}`}></div>:{" "}
-            {blockCounts[color.toLowerCase() as ColorType]}
+            <span>{blockCounts[color.toLowerCase() as ColorType]}</span>
           </div>
         ))}
         <div className="endboard-unit">Total Blocks : {totalCount}</div>

@@ -56,8 +56,8 @@ function ButtonBox() {
   return (
     <div className="button-box">
       {gameMode === GAME_STATE.WAITING ? (
-        <button className="game-button" onClick={handleGameStart}>
-          Game Start
+        <button className="game-button big-button" onClick={handleGameStart}>
+          Game Start!
         </button>
       ) : (
         ""
@@ -84,7 +84,7 @@ function ButtonBox() {
         ""
       )}
       {gameMode === GAME_STATE.OVER ? (
-        <button className="game-button" onClick={handleGameHome}>
+        <button className="game-button big-button" onClick={handleGameHome}>
           Home
         </button>
       ) : (

@@ -126,7 +126,7 @@ function Setting() {
           </select>
         </div>
         <div className="setting-unit">
-          Red Key :{" "}
+          <div className={`block bc-red`}></div>:
           <input
             type="text"
             name="command1"
@@ -139,7 +139,7 @@ function Setting() {
           />
         </div>
         <div className="setting-unit">
-          Blue Key :{" "}
+          <div className={`block bc-blue`}></div>:
           <input
             type="text"
             name="command2"
@@ -152,7 +152,7 @@ function Setting() {
           />
         </div>
         <div className="setting-unit">
-          Green Key :{" "}
+          <div className={`block bc-green`}></div> :
           <input
             type="text"
             name="command3"
@@ -165,7 +165,7 @@ function Setting() {
           />
         </div>
         <div className="setting-unit">
-          Fever Key :{" "}
+          <div className={`block bc-fever`}></div>:
           <input
             type="text"
             name="command4"

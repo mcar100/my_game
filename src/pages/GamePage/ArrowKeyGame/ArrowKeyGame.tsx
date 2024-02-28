@@ -31,7 +31,12 @@ function ArrowKeyGame() {
         )}
       </div>
       <div className="arrow-game-bottom">
-        <ArrowKeyCommand />
+        {gameMode === GAME_STATE.PROCEEDING ||
+        gameMode === GAME_STATE.STOPPED ? (
+          <ArrowKeyCommand />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
