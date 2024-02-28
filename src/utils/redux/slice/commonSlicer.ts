@@ -53,9 +53,7 @@ const commonSlice = createSlice({
       state.gameState = GAME_STATE.WAITING;
       state.timer = 0;
     },
-    setGame: (state) => {
-      state.gameState = GAME_STATE.SETTING;
-    },
+
     saveGameData: (state, action: PayloadAction<SavedData>) => {
       state.savedData.title = action.payload.title;
       state.savedData.point = action.payload.point;
@@ -83,7 +81,6 @@ export const {
   resumeGame,
   finishGame,
   goHome,
-  setGame,
   updateTimer,
   decrementTimer,
 } = commonSlice.actions;

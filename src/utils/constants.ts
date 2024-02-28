@@ -4,14 +4,12 @@ export interface GameState {
   PROCEEDING: number;
   STOPPED: number;
   OVER: number;
-  SETTING: number;
 }
 export const GAME_STATE: GameState = {
   WAITING: 1,
   PROCEEDING: 2,
   STOPPED: 3,
   OVER: 4,
-  SETTING: 5,
 };
 export const MAX_TIMER = 90;
 
