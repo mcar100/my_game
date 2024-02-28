@@ -8,7 +8,7 @@
 ### 게임 목록 및 설명
 
 <details>
-  <summary><strong>화살표 게임</strong></summary>
+  <summary><strong>Arrow Game (화살표 게임)</strong></summary>
 
   ### 설명
   - 상자의 색상에 맞는 커맨드를 입력해 점수를 획득하는 간단한 게임입니다.
@@ -30,9 +30,11 @@
 
 ### 링크
 
-Netlify: [배포사이트 이동]()
+[![Netlify Status](https://api.netlify.com/api/v1/badges/370f1ec3-4adb-414d-8b11-bc0ae673c158/deploy-status)](https://app.netlify.com/sites/seobgames/deploys)
 
-Notion: [프로젝트 설명]()  
+Netlify: [배포사이트 이동](https://seobgames.netlify.app/)
+
+Notion: [프로젝트 문서 이동](https://www.notion.so/React-f584a3851569459b83159348051f8e16?pvs=4)  
 <br/>
 ### 기술 스택
 
