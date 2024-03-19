@@ -21,11 +21,10 @@ function Timer() {
 
     if (gameMode === GAME_STATE.PROCEEDING) {
       startTimer();
-    } else if (gameMode === GAME_STATE.OVER) {
-      dispatch(checkLastCombo());
     }
     return () => {
       clearInterval(timerId);
+      dispatch(checkLastCombo());
     };
   }, [gameMode, dispatch]);
 
